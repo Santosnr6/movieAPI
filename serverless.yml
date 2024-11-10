@@ -1,0 +1,48 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: jespernyberg
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: movieApi
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  deploymanetMethod: direct
+
+functions:
+  GetMovies:
+    handler: functions/GetMovies/index.handler
+    events:
+      - httpApi:
+          path: /api/movies
+          method: get
+  GetMovie:
+    handler: functions/GetMovie/index.handler
+    events:
+      - httpApi:
+          path: /api/movies/{id}
+          method: get
+  GetKey:
+    handler: functions/GetKey/index.handler
+    events:
+      - httpApi:
+          path: /api/key
+          method: get
+  PostMovie:
+    handler: functions/PostMovie/index.handler
+    events:
+      - httpApi:
+          path: /api/movies
+          method: post
+  DeleteMovie:
+    handler: functions/DeleteMovie/index.handler
+    events:
+      - httpApi:
+          path: /api/movies/{id}
+          method: delete
+  Login:
+    handler: functions/Login/index.handler
+    events:
+      - httpApi:
+          path: /api/login
+          method: get
